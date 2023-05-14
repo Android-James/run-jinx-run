@@ -20,17 +20,25 @@ scoreboard = Scoreboard()
 
 # Sprite Setup
 P1 = Player()
-H1 = Hand(HandSide.RIGHT)
-H2 = Hand(HandSide.LEFT)
+# H1 = Hand(HandSide.RIGHT)
+# H2 = Hand(HandSide.LEFT)
+H1 = Hand()
+H2 = Hand()
+H3 = Hand()
+H4 = Hand()
 
 # Sprite Groups
 hands = pygame.sprite.Group()
 hands.add(H1)
 hands.add(H2)
+hands.add(H3)
+hands.add(H4)
 all_sprites = pygame.sprite.Group()
 all_sprites.add(P1)
 all_sprites.add(H1)
 all_sprites.add(H2)
+all_sprites.add(H3)
+all_sprites.add(H4)
 
 
 def main_menu_phase():
@@ -63,6 +71,8 @@ def gameplay_phase():
     P1.update()
     H1.move(scoreboard, P1.player_position)
     H2.move(scoreboard, P1.player_position)
+    H3.move(scoreboard, P1.player_position)
+    H4.move(scoreboard, P1.player_position)
 
     GlobalState.SCROLL = update_background_using_scroll(GlobalState.SCROLL)
     VisualizationService.draw_background_with_scroll(GlobalState.SCREEN, GlobalState.SCROLL)
@@ -70,6 +80,8 @@ def gameplay_phase():
     P1.draw(GlobalState.SCREEN)
     H1.draw(GlobalState.SCREEN)
     H2.draw(GlobalState.SCREEN)
+    H3.draw(GlobalState.SCREEN)
+    H4.draw(GlobalState.SCREEN)
     scoreboard.draw(GlobalState.SCREEN)
 
     if pygame.sprite.spritecollide(P1, hands, False, pygame.sprite.collide_mask):
@@ -88,5 +100,7 @@ def game_over():
     P1.reset()
     H1.reset()
     H2.reset()
+    H3.reset()
+    H4.reset()
     GlobalState.GAME_STATE = GameStatus.MAIN_MENU
     time.sleep(0.5)
