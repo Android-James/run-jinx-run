@@ -84,6 +84,10 @@ def gameplay_phase():
     H4.draw(GlobalState.SCREEN)
     scoreboard.draw(GlobalState.SCREEN)
 
+    if scoreboard.get_current_score() == 100:
+        print("You win!")
+        game_over()
+
     if pygame.sprite.spritecollide(P1, hands, False, pygame.sprite.collide_mask):
         scoreboard.update_max_score()
         MusicService.play_slap_sound()

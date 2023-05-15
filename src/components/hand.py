@@ -68,5 +68,5 @@ class Hand(pygame.sprite.Sprite):
 
     def draw(self, screen):
         dotted_line = VisualizationService.get_dotted_line()
-        screen.blit(dotted_line, (0, self.rect.y + 53))
+        screen.blit(dotted_line, (0, self.rect.y))
         screen.blit(self.image, self.rect)
