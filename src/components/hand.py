@@ -42,7 +42,7 @@ class Hand(pygame.sprite.Sprite):
         self.rect.center = (self.new_x, self.new_y)
 
         if self.rect.top > player_position.y - 35 and self.can_score:
-            print(int(player_position.x), int(player_position.y))
+            # print(int(player_position.x), int(player_position.y))
             scoreboard.increase_current_score()
             self.can_score = False
 

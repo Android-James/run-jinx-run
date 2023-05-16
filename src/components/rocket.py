@@ -18,34 +18,18 @@ class Rocket(pygame.sprite.Sprite):
 
         self._load_hand()
 
-    def map():
-        # calculate the width and height of each cell
-        CELL_WIDTH = Config.WIDTH // 10
-        CELL_HEIGHT = Config.HEIGHT // 10
-
-        # create the 2d array
-        GRID = [[None for y in range(10)] for x in range(10)]
-
-        # create nodes for the grid
-        for x in range(10):
-            for y in range(10):
-                node_x = x * CELL_WIDTH
-                node_y = y * CELL_HEIGHT
-                node_width = CELL_WIDTH
-                node_height = CELL_HEIGHT
-                node_rect = pygame.Rect(node_x, node_y, node_width, node_height)
-                GRID[x][y] = node_rect
-
     def reset(self):
-        self.new_spd = random.uniform(0.5, 20) 
+        self.new_spd = random.uniform(15, 20) 
         self.can_score = True
 
         # self.offset_x = random.randint(100, 360)
-        self.new_y = 0
+        self.new_y = -40
+        # position = int(player_position.x)
         self.new_x = random.randint(0, 360)
-
+        # self.new_x = position
 
     def _load_hand(self):
+       
         self.image = VisualizationService.get_rocket_image()
         self.rect = self.image.get_rect()
         self.mask = pygame.mask.from_surface(self.image)
