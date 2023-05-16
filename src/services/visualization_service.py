@@ -13,6 +13,10 @@ class VisualizationService:
     @staticmethod
     def get_left_hand_image():
         return pygame.image.load(ASSETS_DIR / "left_hand.png").convert_alpha()
+    
+    @staticmethod
+    def get_rocket_image():
+        return pygame.image.load(ASSETS_DIR / "rocket.png").convert_alpha()
 
     @staticmethod
     def get_player_image():

@@ -5,6 +5,7 @@ import pygame
 
 from src.components.game_status import GameStatus
 from src.components.hand import Hand
+from src.components.rocket import Rocket
 from src.components.hand_side import HandSide
 from src.components.player import Player
 from src.components.scoreboard import Scoreboard
@@ -26,6 +27,7 @@ H1 = Hand()
 H2 = Hand()
 H3 = Hand()
 H4 = Hand()
+R1 = Rocket()
 
 # Sprite Groups
 hands = pygame.sprite.Group()
@@ -33,12 +35,14 @@ hands.add(H1)
 hands.add(H2)
 hands.add(H3)
 hands.add(H4)
+hands.add(R1)
 all_sprites = pygame.sprite.Group()
 all_sprites.add(P1)
 all_sprites.add(H1)
 all_sprites.add(H2)
 all_sprites.add(H3)
 all_sprites.add(H4)
+all_sprites.add(R1)
 
 
 def main_menu_phase():
@@ -73,6 +77,7 @@ def gameplay_phase():
     H2.move(scoreboard, P1.player_position)
     H3.move(scoreboard, P1.player_position)
     H4.move(scoreboard, P1.player_position)
+    R1.move(scoreboard, P1.player_position)
 
     GlobalState.SCROLL = update_background_using_scroll(GlobalState.SCROLL)
     VisualizationService.draw_background_with_scroll(GlobalState.SCREEN, GlobalState.SCROLL)
@@ -82,6 +87,7 @@ def gameplay_phase():
     H2.draw(GlobalState.SCREEN)
     H3.draw(GlobalState.SCREEN)
     H4.draw(GlobalState.SCREEN)
+    R1.draw(GlobalState.SCREEN)
     scoreboard.draw(GlobalState.SCREEN)
 
     if scoreboard.get_current_score() == 100:
@@ -106,5 +112,6 @@ def game_over():
     H2.reset()
     H3.reset()
     H4.reset()
+    R1.reset()
     GlobalState.GAME_STATE = GameStatus.MAIN_MENU
     time.sleep(0.5)
