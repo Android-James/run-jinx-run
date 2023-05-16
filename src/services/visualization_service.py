@@ -72,7 +72,7 @@ class VisualizationService:
     @staticmethod
     def draw_author_credits(screen):
         credit_font = VisualizationService.get_credit_font_font()
-        author_credits = credit_font.render("©GOODGIS 2022", True, (0, 0, 0))
+        author_credits = credit_font.render("BSCS 3-1 2022", True, (0, 0, 0))
         credits_rect = author_credits.get_rect(center=(Config.WIDTH // 2, 620))
         screen.blit(author_credits, credits_rect)
 
