@@ -9,9 +9,9 @@ class MusicService:
     @staticmethod
     def get_background_musics():
         return [
-            AUDIO_DIR / "sleigh_ride.ogg",
-            AUDIO_DIR / "merry_christmas.ogg",
-            AUDIO_DIR / "here_comes_santa.ogg"
+            AUDIO_DIR / "enemy_instru.mp3",
+            AUDIO_DIR / "playground_instru.mp3",
+            AUDIO_DIR / "snakes_instru.mp3",
         ]
 
     @staticmethod
