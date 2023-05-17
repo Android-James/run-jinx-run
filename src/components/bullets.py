@@ -8,15 +8,15 @@ from src.services.music_service import MusicService
 from src.services.visualization_service import VisualizationService
 
 
-class Hand(pygame.sprite.Sprite):
+
+class Bullets(pygame.sprite.Sprite):
+    # class constructor
     def __init__(self):
         super().__init__()
-        self.new_spd = random.uniform(5, 20)
+        self.new_spd = random.uniform(5, 20) #random speed
         self.new_y = 0
-        # self.offset_x = 0
-        # self.new_x = sine(100.0, 1280, 20.0, self.offset_x)
-        self.new_x = random.randint(0, 360)
-        # self.side = hand_side
+        
+        self.new_x = random.randint(0, 360) #random x position for bullets
         self.can_score = True
 
         self._load_hand()

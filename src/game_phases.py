@@ -4,9 +4,8 @@ import time
 import pygame
 
 from src.components.game_status import GameStatus
-from src.components.hand import Hand
+from src.components.bullets import Bullets
 from src.components.rocket import Rocket
-from src.components.hand_side import HandSide
 from src.components.player import Player
 from src.components.scoreboard import Scoreboard
 from src.global_state import GlobalState
@@ -22,10 +21,10 @@ scoreboard = Scoreboard()
 
 # Sprite Setup
 P1 = Player()
-H1 = Hand()
-H2 = Hand()
-H3 = Hand()
-H4 = Hand()
+H1 = Bullets()
+H2 = Bullets()
+H3 = Bullets()
+H4 = Bullets()
 R1 = Rocket(P1.player_position)
 
 # Sprite Groups
@@ -44,6 +43,7 @@ all_sprites.add(H4)
 all_sprites.add(R1)
 
 
+# Game Phases
 def main_menu_phase():
     scoreboard.reset_current_score()
 
