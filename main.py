@@ -8,12 +8,11 @@ from src.services.music_service import MusicService
 
 pygame.init()
 
-FramePerSec = pygame.time.Clock()
-
+Clock = pygame.time.Clock()
 
 def update_game_display():
     pygame.display.update()
-    FramePerSec.tick(Config.FPS)
+    Clock.tick(Config.FPS)
 
 
 def main():
@@ -27,7 +26,6 @@ def main():
 
         MusicService.start_background_music()
         update_game_display()
-
 
 if __name__ == "__main__":
     main()

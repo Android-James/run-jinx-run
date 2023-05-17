@@ -19,19 +19,14 @@ VisualizationService.load_main_game_displays()
 
 scoreboard = Scoreboard()
 
-clock = pygame.time.Clock()
-clock.tick(60)
-
 
 # Sprite Setup
 P1 = Player()
-# H1 = Hand(HandSide.RIGHT)
-# H2 = Hand(HandSide.LEFT)
 H1 = Hand()
 H2 = Hand()
 H3 = Hand()
 H4 = Hand()
-R1 = Rocket()
+R1 = Rocket(P1.player_position)
 
 # Sprite Groups
 enemies = pygame.sprite.Group()
@@ -81,10 +76,7 @@ def gameplay_phase():
     H2.move(scoreboard, P1.player_position)
     H3.move(scoreboard, P1.player_position)
     H4.move(scoreboard, P1.player_position)
-
-    if clock.get_time() > 2000:
-        print(clock.get_time())
-        R1.move(scoreboard, P1.player_position)
+    R1.move(scoreboard, P1.player_position)
 
     GlobalState.SCROLL = update_background_using_scroll(GlobalState.SCROLL)
     VisualizationService.draw_background_with_scroll(GlobalState.SCREEN, GlobalState.SCROLL)
@@ -96,7 +88,7 @@ def gameplay_phase():
     H4.draw(GlobalState.SCREEN)
     R1.draw(GlobalState.SCREEN)
     scoreboard.draw(GlobalState.SCREEN)
-
+    
     if scoreboard.get_current_score() == 100:
         print("You win!")
         game_over()
@@ -119,8 +111,7 @@ def game_over():
     H2.reset()
     H3.reset()
     H4.reset()
-    R1.reset()
+    R1.reset(P1.player_position)
     GlobalState.GAME_STATE = GameStatus.MAIN_MENU
     time.sleep(0.5)
 
-    print(clock.get_time())

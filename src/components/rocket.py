@@ -9,24 +9,20 @@ from src.services.visualization_service import VisualizationService
 
 
 class Rocket(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, player_position):
         super().__init__()
-        self.new_spd = random.uniform(15, 20)
+        self.new_spd = 5
         self.new_y = 0
-        self.new_x = random.randint(0, 360)
+
+        self.new_x = 180
         self.can_score = True
 
         self._load_hand()
 
-    def reset(self):
-        self.new_spd = random.uniform(15, 20) 
+    def reset(self, player_position):
         self.can_score = True
-
-        # self.offset_x = random.randint(100, 360)
         self.new_y = -40
-        # position = int(player_position.x)
-        self.new_x = random.randint(0, 360)
-        # self.new_x = position
+        self.new_x = 180
 
     def _load_hand(self):
        
@@ -36,12 +32,12 @@ class Rocket(pygame.sprite.Sprite):
     
 
     def move(self, scoreboard: Scoreboard, player_position):
-        # self.new_x = sine(100.0, 620, 20.0, self.offset_x)
         self.new_y += self.new_spd
+
         self.rect.center = (self.new_x, self.new_y)
 
         if self.rect.top > player_position.y - 35 and self.can_score:
-            print(int(player_position.x), int(player_position.y))
+            # print(int(player_position.x), int(player_position.y))
             scoreboard.increase_current_score()
             self.can_score = False
 
@@ -53,15 +49,12 @@ class Rocket(pygame.sprite.Sprite):
         if self.rect.top > Config.HEIGHT:
             self.rect.bottom = 0
             # Play Kung Fu Sound
-            self.new_spd = random.uniform(5, 20)
+            self.new_spd = 5
 
-            self.new_x = random.randint(0, 360)
+            self.new_x = player_position.x
             self.new_y = -40
 
-
-            if self.new_spd >= 6:
-                self.new_spd = 8
-                MusicService.play_chop_sound()
+            MusicService.play_chop_sound()
 
             self.can_score = True
 
