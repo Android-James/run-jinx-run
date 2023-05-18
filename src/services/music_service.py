@@ -15,14 +15,6 @@ class MusicService:
         ]
 
     @staticmethod
-    def get_chop_musics():
-        return [
-            AUDIO_DIR / "chop.wav",
-            AUDIO_DIR / "chop_2.wav",
-            AUDIO_DIR / "chop_3.wav"
-        ]
-
-    @staticmethod
     def get_cheer_musics():
         return [
             AUDIO_DIR / "cheer.wav",
@@ -42,20 +34,13 @@ class MusicService:
         pygame.mixer.music.play()
 
     @staticmethod
-    def play_chop_sound():
-        musics = MusicService.get_chop_musics()
-        filename = random.choice(musics)
-        chop = pygame.mixer.Sound(filename)
-        pygame.mixer.Sound.play(chop)
-
-    @staticmethod
     def play_score_sound():
         score_sfx = pygame.mixer.Sound(AUDIO_DIR / "score.wav")
         pygame.mixer.Sound.play(score_sfx)
 
     @staticmethod
-    def play_slap_sound():
-        slap_sfx = pygame.mixer.Sound(AUDIO_DIR / "slap.wav")
+    def play_laugh_sound():
+        slap_sfx = pygame.mixer.Sound(AUDIO_DIR / "jinx-laugh.mp3")
         pygame.mixer.Sound.play(slap_sfx)
 
     @staticmethod

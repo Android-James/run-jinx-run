@@ -48,15 +48,15 @@ class VisualizationService:
 
     @staticmethod
     def get_main_font():
-        return pygame.font.Font(ASSETS_DIR / "BaiJamjuree-Bold.ttf", 40)
+        return pygame.font.Font(ASSETS_DIR / "VT323-Regular.ttf", 40)
 
     @staticmethod
     def get_credit_font_font():
-        return pygame.font.Font(ASSETS_DIR / "BaiJamjuree-Bold.ttf", 12)
+        return pygame.font.Font(ASSETS_DIR / "VT323-Regular.ttf", 12)
 
     @staticmethod
     def get_score_font():
-        return pygame.font.Font(ASSETS_DIR / "BaiJamjuree-Bold.ttf", 26)
+        return pygame.font.Font(ASSETS_DIR / "VT323-Regular.ttf", 26)
 
     @staticmethod
     def load_main_game_displays():

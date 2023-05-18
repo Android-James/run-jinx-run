@@ -95,7 +95,7 @@ def gameplay_phase():
 
     if pygame.sprite.spritecollide(P1, enemies, False, pygame.sprite.collide_mask):
         scoreboard.update_max_score()
-        MusicService.play_slap_sound()
+        MusicService.play_laugh_sound()
         time.sleep(0.5)
         game_over()
 

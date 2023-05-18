@@ -40,7 +40,7 @@ class Bullets(pygame.sprite.Sprite):
         # self.new_x = sine(100.0, 620, 20.0, self.offset_x)
         self.new_y += self.new_spd
         self.rect.center = (self.new_x, self.new_y)
-
+ 
         if self.rect.top > player_position.y - 35 and self.can_score:
             # print(int(player_position.x), int(player_position.y))
             scoreboard.increase_current_score()
@@ -51,18 +51,14 @@ class Bullets(pygame.sprite.Sprite):
             if scoreboard.get_current_score() % 5 == 0:
                 MusicService.play_cheer_sound()
 
+        # for respawning bullets
         if self.rect.top > Config.HEIGHT:
             self.rect.bottom = 0
-            # Play Kung Fu Sound
-            self.new_spd = random.uniform(5, 20)
+            # Play Gunshot Sound
+            self.new_spd = random.uniform(5, 15)
 
             self.new_x = random.randint(0, 360)
             self.new_y = -40
-
-
-            if self.new_spd >= 6:
-                self.new_spd = 8
-                MusicService.play_chop_sound()
 
             self.can_score = True
 

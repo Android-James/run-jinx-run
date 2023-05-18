@@ -48,13 +48,11 @@ class Rocket(pygame.sprite.Sprite):
 
         if self.rect.top > Config.HEIGHT:
             self.rect.bottom = 0
-            # Play Kung Fu Sound
+            # Play Gunshot Sound
             self.new_spd = 5
 
             self.new_x = player_position.x
             self.new_y = -40
-
-            MusicService.play_chop_sound()
 
             self.can_score = True
 
