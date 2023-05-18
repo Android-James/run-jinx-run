@@ -11,10 +11,12 @@ def sine(speed: float, time: int, how_far: float, overall_y: int) -> int:
 
 
 def update_background_using_scroll(scroll):
-    scroll -= .5
+    # scroll -= .5
 
-    if scroll < -80:
-        scroll = 0
+    # if scroll < -80:
+    #     scroll = 0
+
+    scroll = 0
 
     return scroll
 

@@ -51,7 +51,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.center = self.pos
 
     def draw(self, screen):
-        screen.blit(VisualizationService.get_santa_hand(), (self.rect.x - 25, self.rect.y - 25))
+        # screen.blit(VisualizationService.get_santa_hand(), (self.rect.x - 25, self.rect.y - 25))
         screen.blit(self.image, self.rect)
 
     def reset(self):
