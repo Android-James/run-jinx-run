@@ -31,7 +31,7 @@ class Bullets(pygame.sprite.Sprite):
 
 
     def _load_hand(self):
-        self.image = VisualizationService.get_left_hand_image()
+        self.image = VisualizationService.get_bullet_image()
         self.rect = self.image.get_rect()
         self.mask = pygame.mask.from_surface(self.image)
     
@@ -48,7 +48,7 @@ class Bullets(pygame.sprite.Sprite):
 
             MusicService.play_score_sound()
 
-            if scoreboard.get_current_score() % 5 == 0:
+            if scoreboard.get_current_score() % 10 == 0:
                 MusicService.play_cheer_sound()
 
         # for respawning bullets
@@ -63,6 +63,4 @@ class Bullets(pygame.sprite.Sprite):
             self.can_score = True
 
     def draw(self, screen):
-        dotted_line = VisualizationService.get_dotted_line()
-        screen.blit(dotted_line, (0, self.rect.y))
         screen.blit(self.image, self.rect)

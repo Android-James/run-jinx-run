@@ -7,7 +7,7 @@ from src.utils.tools import sine
 
 class VisualizationService:
     @staticmethod
-    def get_left_hand_image():
+    def get_bullet_image():
         return pygame.image.load(ASSETS_DIR / "bullet.png").convert_alpha()
     
     @staticmethod
@@ -16,19 +16,11 @@ class VisualizationService:
 
     @staticmethod
     def get_player_image():
-        return pygame.image.load(ASSETS_DIR / "gift.png").convert_alpha()
-
-    @staticmethod
-    def get_dotted_line():
-        return pygame.image.load(ASSETS_DIR / "dotted_line.png").convert_alpha()
+        return pygame.image.load(ASSETS_DIR / "vi.png").convert_alpha()
 
     @staticmethod
     def get_background_image():
         return pygame.image.load(ASSETS_DIR / "bg.png").convert_alpha()
-
-    @staticmethod
-    def get_santa_hand():
-        return pygame.image.load(ASSETS_DIR / "santa_hand.png").convert_alpha()
 
     @staticmethod
     def get_score_backing():
@@ -43,8 +35,12 @@ class VisualizationService:
         return pygame.image.load(MENU_DIR / "title.png").convert_alpha()
 
     @staticmethod
-    def get_holding_gift_image():
-        return pygame.image.load(MENU_DIR / "holding_gift.png").convert_alpha()
+    def get_you_won_image():
+        return pygame.image.load(MENU_DIR / "won.png").convert_alpha()
+
+    @staticmethod
+    def get_vi_and_jinx_image():
+        return pygame.image.load(MENU_DIR / "vi_and_jinx.png").convert_alpha()
 
     @staticmethod
     def get_main_font():
@@ -52,7 +48,7 @@ class VisualizationService:
 
     @staticmethod
     def get_credit_font_font():
-        return pygame.font.Font(ASSETS_DIR / "VT323-Regular.ttf", 12)
+        return pygame.font.Font(ASSETS_DIR / "VT323-Regular.ttf", 18)
 
     @staticmethod
     def get_score_font():
@@ -61,8 +57,8 @@ class VisualizationService:
     @staticmethod
     def load_main_game_displays():
         pygame.display.set_caption("Run Jinx Run")
-        gift = VisualizationService.get_player_image()
-        pygame.display.set_icon(gift)
+        run_jinx_run = VisualizationService.get_title_image()
+        pygame.display.set_icon(run_jinx_run)
 
     @staticmethod
     def draw_background_with_scroll(screen, scroll):
@@ -72,7 +68,7 @@ class VisualizationService:
     @staticmethod
     def draw_author_credits(screen):
         credit_font = VisualizationService.get_credit_font_font()
-        author_credits = credit_font.render("BSCS 3-1 2022", True, (0, 0, 0))
+        author_credits = credit_font.render("BSCS 3-1 2022", True, (250, 250, 250))
         credits_rect = author_credits.get_rect(center=(Config.WIDTH // 2, 620))
         screen.blit(author_credits, credits_rect)
 
@@ -80,25 +76,40 @@ class VisualizationService:
     def draw_best_score(screen, max_score):
         score_font = VisualizationService.get_score_font()
         best_score = score_font.render(f"Best: {max_score}", True, (0, 0, 0))
-        best_score_rect = best_score.get_rect(center=(Config.WIDTH // 2, 220))
+        best_score_rect = best_score.get_rect(center=(Config.WIDTH // 2, 260))
         screen.blit(best_score, best_score_rect)
 
     @staticmethod
     def draw_title(screen):
-        y = sine(200.0, 1280, 10.0, 100)
+        y = sine(200.0, 1280, 10.0, 0)
         title = VisualizationService.get_title_image()
-        screen.blit(title, (0, y))
-        holding_gift = VisualizationService.get_holding_gift_image()
-        screen.blit(holding_gift, (0, 320))
+        screen.blit(title, (60, y))
+        vi_and_jinx = VisualizationService.get_vi_and_jinx_image()
+        screen.blit(vi_and_jinx, (0, 220))
+
+    @staticmethod
+    def draw_win(screen):
+        y = sine(200.0, 1280, 10.0, 0)
+        title = VisualizationService.get_you_won_image()
+        screen.blit(title, (40, y))
+        vi_and_jinx = VisualizationService.get_vi_and_jinx_image()
+        screen.blit(vi_and_jinx, (0, 220))
 
     @staticmethod
     def draw_press_key(screen, press_y):
         press_key = VisualizationService.get_press_key_image()
-        screen.blit(press_key, (0, press_y))
+        screen.blit(press_key, (60, press_y))
 
     @staticmethod
     def draw_main_menu(screen, max_score, press_y):
         VisualizationService.draw_author_credits(screen)
         VisualizationService.draw_best_score(screen, max_score)
         VisualizationService.draw_title(screen)
+        VisualizationService.draw_press_key(screen, press_y)
+
+    @staticmethod
+    def draw_winning_menu(screen, max_score, press_y):
+        VisualizationService.draw_author_credits(screen)
+        VisualizationService.draw_best_score(screen, max_score)
+        VisualizationService.draw_win(screen)
         VisualizationService.draw_press_key(screen, press_y)

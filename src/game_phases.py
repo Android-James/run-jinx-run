@@ -21,25 +21,25 @@ scoreboard = Scoreboard()
 
 # Sprite Setup
 P1 = Player()
-H1 = Bullets()
-H2 = Bullets()
-H3 = Bullets()
-H4 = Bullets()
+B1 = Bullets()
+B2 = Bullets()
+B3 = Bullets()
+B4 = Bullets()
 R1 = Rocket(P1.player_position)
 
 # Sprite Groups
 enemies = pygame.sprite.Group()
-enemies.add(H1)
-enemies.add(H2)
-enemies.add(H3)
-enemies.add(H4)
+enemies.add(B1)
+enemies.add(B2)
+enemies.add(B3)
+enemies.add(B4)
 enemies.add(R1)
 all_sprites = pygame.sprite.Group()
 all_sprites.add(P1)
-all_sprites.add(H1)
-all_sprites.add(H2)
-all_sprites.add(H3)
-all_sprites.add(H4)
+all_sprites.add(B1)
+all_sprites.add(B2)
+all_sprites.add(B3)
+all_sprites.add(B4)
 all_sprites.add(R1)
 
 
@@ -72,32 +72,56 @@ def gameplay_phase():
             return
 
     P1.update()
-    H1.move(scoreboard, P1.player_position)
-    H2.move(scoreboard, P1.player_position)
-    H3.move(scoreboard, P1.player_position)
-    H4.move(scoreboard, P1.player_position)
+    B1.move(scoreboard, P1.player_position)
+    B2.move(scoreboard, P1.player_position)
+    B3.move(scoreboard, P1.player_position)
+    B4.move(scoreboard, P1.player_position)
     R1.move(scoreboard, P1.player_position)
 
     GlobalState.SCROLL = update_background_using_scroll(GlobalState.SCROLL)
     VisualizationService.draw_background_with_scroll(GlobalState.SCREEN, GlobalState.SCROLL)
 
     P1.draw(GlobalState.SCREEN)
-    H1.draw(GlobalState.SCREEN)
-    H2.draw(GlobalState.SCREEN)
-    H3.draw(GlobalState.SCREEN)
-    H4.draw(GlobalState.SCREEN)
+    B1.draw(GlobalState.SCREEN)
+    B2.draw(GlobalState.SCREEN)
+    B3.draw(GlobalState.SCREEN)
+    B4.draw(GlobalState.SCREEN)
     R1.draw(GlobalState.SCREEN)
     scoreboard.draw(GlobalState.SCREEN)
     
-    if scoreboard.get_current_score() == 100:
-        print("You win!")
-        game_over()
+    if scoreboard.get_current_score() > 1:
+        winning_phase()
 
     if pygame.sprite.spritecollide(P1, enemies, False, pygame.sprite.collide_mask):
         scoreboard.update_max_score()
         MusicService.play_laugh_sound()
         time.sleep(0.5)
         game_over()
+
+
+def winning_phase():
+    P1.reset()
+    B1.reset()
+    B2.reset()
+    B3.reset()
+    B4.reset()
+    R1.reset(P1.player_position)
+
+    events = pygame.event.get()
+
+    for event in events:
+        if is_close_app_event(event):
+            GlobalState.GAME_STATE = GameStatus.GAME_END
+            return
+
+        if event.type == pygame.KEYDOWN:
+            GlobalState.GAME_STATE = GameStatus.MAIN_MENU
+
+    GlobalState.SCROLL = update_background_using_scroll(GlobalState.SCROLL)
+    VisualizationService.draw_background_with_scroll(GlobalState.SCREEN, GlobalState.SCROLL)
+    GlobalState.PRESS_Y = update_press_key(GlobalState.PRESS_Y)
+    VisualizationService.draw_winning_menu(GlobalState.SCREEN, scoreboard.get_max_score(), GlobalState.PRESS_Y)
+
 
 
 def exit_game_phase():
@@ -107,10 +131,10 @@ def exit_game_phase():
 
 def game_over():
     P1.reset()
-    H1.reset()
-    H2.reset()
-    H3.reset()
-    H4.reset()
+    B1.reset()
+    B2.reset()
+    B3.reset()
+    B4.reset()
     R1.reset(P1.player_position)
     GlobalState.GAME_STATE = GameStatus.MAIN_MENU
     time.sleep(0.5)

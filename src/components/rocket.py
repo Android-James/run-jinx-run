@@ -33,7 +33,6 @@ class Rocket(pygame.sprite.Sprite):
 
     def move(self, scoreboard: Scoreboard, player_position):
         self.new_y += self.new_spd
-
         self.rect.center = (self.new_x, self.new_y)
 
         if self.rect.top > player_position.y - 35 and self.can_score:
@@ -43,7 +42,7 @@ class Rocket(pygame.sprite.Sprite):
 
             MusicService.play_score_sound()
 
-            if scoreboard.get_current_score() % 5 == 0:
+            if scoreboard.get_current_score() % 10 == 0:
                 MusicService.play_cheer_sound()
 
         if self.rect.top > Config.HEIGHT:
@@ -57,6 +56,4 @@ class Rocket(pygame.sprite.Sprite):
             self.can_score = True
 
     def draw(self, screen):
-        dotted_line = VisualizationService.get_dotted_line()
-        screen.blit(dotted_line, (0, self.rect.y))
         screen.blit(self.image, self.rect)

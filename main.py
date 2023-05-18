@@ -2,7 +2,7 @@ import pygame
 
 from src.components.game_status import GameStatus
 from src.config import Config
-from src.game_phases import main_menu_phase, gameplay_phase, exit_game_phase
+from src.game_phases import main_menu_phase, gameplay_phase, exit_game_phase, winning_phase
 from src.global_state import GlobalState
 from src.services.music_service import MusicService
 
@@ -23,6 +23,8 @@ def main():
             gameplay_phase()
         elif GlobalState.GAME_STATE == GameStatus.GAME_END:
             exit_game_phase()
+        elif GlobalState.GAME_STATE == GameStatus.GAME_WIN:
+            winning_phase()
 
         MusicService.start_background_music()
         update_game_display()

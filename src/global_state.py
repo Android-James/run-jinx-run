@@ -8,7 +8,7 @@ class GlobalState:
     GAME_STATE = GameStatus.MAIN_MENU
     SCREEN = None
     SCROLL = 0
-    PRESS_Y = 650
+    PRESS_Y = 620
 
     @staticmethod
     def load_main_screen():

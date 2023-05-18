@@ -16,8 +16,6 @@ def update_background_using_scroll(scroll):
     # if scroll < -80:
     #     scroll = 0
 
-    scroll = 0
-
     return scroll
 
 
