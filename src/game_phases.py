@@ -89,7 +89,7 @@ def gameplay_phase():
     R1.draw(GlobalState.SCREEN)
     scoreboard.draw(GlobalState.SCREEN)
     
-    if scoreboard.get_current_score() > 1:
+    if scoreboard.get_current_score() > 99:
         winning_phase()
 
     if pygame.sprite.spritecollide(P1, enemies, False, pygame.sprite.collide_mask):
