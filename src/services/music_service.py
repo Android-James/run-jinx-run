@@ -17,10 +17,10 @@ class MusicService:
     @staticmethod
     def get_cheer_musics():
         return [
-            AUDIO_DIR / "cheer.wav",
-            AUDIO_DIR / "cheer_2.wav",
-            AUDIO_DIR / "cheer_3.wav",
-            AUDIO_DIR / "cheer_4.wav"
+            AUDIO_DIR / "cheer.ogg",
+            AUDIO_DIR / "cheer_2.ogg",
+            AUDIO_DIR / "cheer_3.ogg",
+            AUDIO_DIR / "cheer_4.ogg"
         ]
 
     @staticmethod
