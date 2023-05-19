@@ -22,6 +22,17 @@ class MusicService:
             AUDIO_DIR / "cheer_3.ogg",
             AUDIO_DIR / "cheer_4.ogg"
         ]
+    
+    @staticmethod
+    def get_jinx_musics():
+        return [
+            AUDIO_DIR / "jinx.ogg",
+            AUDIO_DIR / "jinx_2.mp3",
+            AUDIO_DIR / "jinx_3.ogg",
+            AUDIO_DIR / "jinx_4.ogg",
+            AUDIO_DIR / "jinx_5.ogg",
+            AUDIO_DIR / "jinx_6.ogg",
+        ]
 
     @staticmethod
     def start_background_music():
@@ -40,8 +51,10 @@ class MusicService:
 
     @staticmethod
     def play_laugh_sound():
-        slap_sfx = pygame.mixer.Sound(AUDIO_DIR / "jinx-laugh.mp3")
-        pygame.mixer.Sound.play(slap_sfx)
+        jinx = MusicService.get_jinx_musics()
+        jinx_laugh = random.choice(jinx)
+        laugh = pygame.mixer.Sound(jinx_laugh)
+        pygame.mixer.Sound.play(laugh)
 
     @staticmethod
     def play_cheer_sound():
