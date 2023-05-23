@@ -35,14 +35,3 @@ def best_first_search(width, height, player_position):
                 visited.add(neighbor)
     
     return None  # Player's position not found
-
-# Example usage
-width = 10
-height = 10
-player_position = (5, 7)  # Assuming player's position is at (5, 7)
-
-result = best_first_search(width, height, player_position)
-x, y = result
-print("Player's position: x =", x)
-print("Player's position: y =", y)
-

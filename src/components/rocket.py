@@ -6,6 +6,7 @@ from src.components.scoreboard import Scoreboard
 from src.config import Config
 from src.services.music_service import MusicService
 from src.services.visualization_service import VisualizationService
+from src.components import bfs
 
 
 class Rocket(pygame.sprite.Sprite):
@@ -52,6 +53,13 @@ class Rocket(pygame.sprite.Sprite):
 
             self.new_x = player_position.x
             self.new_y = -40
+
+            player_position = (int(self.new_x), int(self.new_y))
+            # print(player_position)
+
+            result = bfs.best_first_search(Config.HEIGHT, Config.WIDTH, player_position)
+            x, y = result
+            print("Player's position: x =", x, "y =", y)
 
             self.can_score = True
 
