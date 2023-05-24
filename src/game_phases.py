@@ -25,7 +25,7 @@ B1 = Bullets()
 B2 = Bullets()
 B3 = Bullets()
 B4 = Bullets()
-R1 = Rocket(P1.player_position)
+R1 = Rocket()
 
 # Sprite Groups
 enemies = pygame.sprite.Group()
@@ -105,7 +105,7 @@ def winning_phase():
     B2.reset()
     B3.reset()
     B4.reset()
-    R1.reset(P1.player_position)
+    R1.reset()
 
     events = pygame.event.get()
 
@@ -135,7 +135,7 @@ def game_over():
     B2.reset()
     B3.reset()
     B4.reset()
-    R1.reset(P1.player_position)
+    R1.reset()
     GlobalState.GAME_STATE = GameStatus.MAIN_MENU
     time.sleep(0.5)
 

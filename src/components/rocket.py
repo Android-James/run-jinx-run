@@ -10,7 +10,7 @@ from src.components import bfs
 
 
 class Rocket(pygame.sprite.Sprite):
-    def __init__(self, player_position):
+    def __init__(self):
         super().__init__()
         self.new_spd = 5
         self.new_y = 0
@@ -20,7 +20,7 @@ class Rocket(pygame.sprite.Sprite):
 
         self._load_hand()
 
-    def reset(self, player_position):
+    def reset(self):
         self.can_score = True
         self.new_y = -40
         self.new_x = 180
@@ -52,14 +52,20 @@ class Rocket(pygame.sprite.Sprite):
             self.new_spd = 5
 
             self.new_x = player_position.x
-            self.new_y = -40
+            self.new_y = player_position.y
 
             player_position = (int(self.new_x), int(self.new_y))
             # print(player_position)
 
             result = bfs.best_first_search(Config.HEIGHT, Config.WIDTH, player_position)
             x, y = result
-            print("Player's position: x =", x, "y =", y)
+            print("Player's position: x =",x," y =", y)
+
+            self.new_x = x
+            self.new_y = -40 #place rocket outside of the screen
+
+            if scoreboard.get_current_score() > 90:
+                self.new_spd = 20
 
             self.can_score = True
 
