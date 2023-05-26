@@ -1,6 +1,6 @@
 from queue import PriorityQueue
 
-def best_first_search(width, height, player_position):
+def best_first_search(width, height, player_position, starting_position):
     # Create a 2D array of cells
     grid = [[(i, j) for j in range(width)] for i in range(height)]
     
@@ -12,7 +12,7 @@ def best_first_search(width, height, player_position):
     
     # Initialize the priority queue with the player's position
     pq = PriorityQueue()
-    pq.put((heuristic(player_position), player_position))
+    pq.put((heuristic(starting_position), starting_position))
     
     # Visited set to keep track of explored cells
     visited = set()
@@ -34,4 +34,4 @@ def best_first_search(width, height, player_position):
                 pq.put((heuristic(neighbor), neighbor))
                 visited.add(neighbor)
     
-    return None  # Player's position not found
+    return player_position

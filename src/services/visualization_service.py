@@ -68,7 +68,7 @@ class VisualizationService:
     @staticmethod
     def draw_author_credits(screen):
         credit_font = VisualizationService.get_credit_font_font()
-        riot_credits = credit_font.render("Copyright Riot Games", True, (250, 250, 250))
+        riot_credits = credit_font.render("BSCS 3-1 | Blanco | Garcia", True, (250, 250, 250))
         credits_rect = riot_credits.get_rect(center=(Config.WIDTH // 2, 620))
         screen.blit(riot_credits, credits_rect)
 

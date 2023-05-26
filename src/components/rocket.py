@@ -57,7 +57,8 @@ class Rocket(pygame.sprite.Sprite):
             player_position = (int(self.new_x), int(self.new_y))
             # print(player_position)
 
-            result = bfs.best_first_search(Config.HEIGHT, Config.WIDTH, player_position)
+            starting_position = (0, 0)
+            result = bfs.best_first_search(Config.HEIGHT, Config.WIDTH, player_position, starting_position)
             x, y = result
             print("Player's position: x =",x," y =", y)
 
